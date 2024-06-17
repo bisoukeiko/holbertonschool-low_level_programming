@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -o cisfun $CLIFE
+gcc $CLIFE -o cisfun
