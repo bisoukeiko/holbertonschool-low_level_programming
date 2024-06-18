@@ -10,6 +10,7 @@
 int main(void)
 {
 	int num;
+	num = gettchar();
 
 	for (num = 0; num < 10; ++num)
 	{
