@@ -10,7 +10,7 @@
 int main(void)
 {
 	int num;
-	num = gettchar();
+	num = getchar();
 
 	for (num = 0; num < 10; ++num)
 	{
