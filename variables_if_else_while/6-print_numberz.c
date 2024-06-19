@@ -10,9 +10,8 @@
 int main(void)
 {
 	int num;
-	num = getchar();
 
-	for (num = 0; num < 10; ++num)
+	for (num = 48; num <= 57; ++num)
 	{
 		putchar(num);
 	}
