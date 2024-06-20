@@ -8,18 +8,20 @@
 
 int main(void)
 {
-	int alphabet;
 
 	print_alphabet();
 
 	return (0);
 }
 
-print_alphabet()
+int print_alphabet()
 {
+	int alphabet;
+
 	for (alphabet = 'a'; alphabet <= 'z'; alphabet++)
 	{
 		_putchar(alphabet);
 	}
-		_putchar("\n");
+		_putchar('\n');
+
 }
