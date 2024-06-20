@@ -22,6 +22,6 @@ int print_alphabet()
 	{
 		_putchar(alphabet);
 	}
-		_putchar('\n');
 
+	_putchar('\n');
 }
