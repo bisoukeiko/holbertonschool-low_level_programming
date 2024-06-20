@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 /**
- * _islower - check for lowercase character
- * @c: The character to be checked
- * Return: 1 if c is lowercase, 0 othercase
+ * _abs - compute the absolute value of an integer
+ * @num: integer 
+ * Return: the absolute value of an integer
  */
 
 int _abs(int num)
