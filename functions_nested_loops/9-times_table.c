@@ -19,11 +19,23 @@ void times_table(void)
 		{
 			result = num1 * num2;
 
-			if ((result / 10) != 0)
+			if (num2 == 0)
 			{
 				_putchar((result / 10) + '0');
 			}
+			else
+			{
 
+				if ((result / 10) == 0)
+				{
+					_putchar(' ');
+				}
+				else
+				{
+					_putchar((result / 10) + '0');
+				}
+
+			}
 			_putchar((result % 10) + '0');
 			_putchar(',');
 			_putchar(' ');
