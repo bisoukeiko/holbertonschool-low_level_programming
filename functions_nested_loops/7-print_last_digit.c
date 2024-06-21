@@ -14,11 +14,11 @@ int print_last_digit(int num)
 	if (last_digit < 0)
 	{
 
-		_putchat(last_digit);
+		_putchar(last_digit);
 	}
 	else
 	{
-		_putchat(last_digit);
+		_putcharlast_digit);
 	}
 
 	return (last_digit);
