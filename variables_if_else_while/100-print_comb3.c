@@ -2,10 +2,10 @@
 
 /**
 * main -  print all possible different combinations of two digits
-* Return: nothing 
+* Return: 0 
 */
 
-void main(void)
+int main(void)
 {
 	int num1;
 	int num2;
@@ -37,5 +37,7 @@ void main(void)
 	}
 
 	putchar('\n');
+
+	return (0);
 
 }
