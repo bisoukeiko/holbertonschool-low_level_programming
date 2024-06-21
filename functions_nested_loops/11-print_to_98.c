@@ -20,8 +20,8 @@ void print_to_98(int n)
 
 			if (cnt != 98)
 			{
-				printf(',');
-				printf(' ');
+				printf(",");
+				printf(" ");
 			}
 		}
 	}
@@ -33,10 +33,12 @@ void print_to_98(int n)
 
 			if (cnt != 98)
 			{
-				printf(',');
-				printf(' ');
+				printf(",");
+				printf(" ");
 			}
 		}
 	}
+
+	printf("\n");
 
 }
