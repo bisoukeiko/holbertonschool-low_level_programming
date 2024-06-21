@@ -13,7 +13,7 @@ int main(void)
 	for (num1 = 0; num1 < 9; num1++)
 	{
 
-		for (num2 = 0; num2 <=9; num++)
+		for (num2 = 0; num2 <=9; num22++)
 		{
 
 			if(num1 < num2)
@@ -34,8 +34,6 @@ int main(void)
 
 		}
 
-
 	}
-
 
 }
