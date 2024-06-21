@@ -36,4 +36,6 @@ void main(void)
 
 	}
 
+	putchar('\n');
+
 }
