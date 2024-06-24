@@ -22,7 +22,7 @@ void print_diagonal(int num)
 				if (cnt1 == cnt2)
 				{
 
-					_putchar('\\');
+					_putchar('\\\n');
 
 				}
 				else
