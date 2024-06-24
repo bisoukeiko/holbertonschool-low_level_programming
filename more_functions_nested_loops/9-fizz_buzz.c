@@ -9,7 +9,7 @@
  * Return: nothing
  */
 
-void main(void)
+int main(void)
 {
 	int num;
 
