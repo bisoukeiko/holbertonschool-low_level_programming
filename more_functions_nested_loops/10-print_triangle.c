@@ -18,17 +18,16 @@ void print_triangle(int size)
 		{
 
 
-			for (cnt2 = 0; cnt2 < size; cnt2++)
+			for (cnt2 = size; cnt2 > 0; cnt2--)
 			{
 
-				if (cnt1 <= cnt2)
+				if (cnt2 > (cnt1 + 1))
 				{
-					_putchar('#');
-					break;
+					_putchar(' ');
 				}
 				else
 				{
-					_putchar(' ');
+					_putchar('#');
 				}
 
 			}
