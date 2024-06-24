@@ -23,7 +23,6 @@ void print_diagonal(int num)
 				{
 
 					_putchar('\\');
-					_putchar('\n');
 
 				}
 				else
@@ -35,6 +34,7 @@ void print_diagonal(int num)
 
 			}
 
+			_putchar('\n');
 		}
 
 	}
