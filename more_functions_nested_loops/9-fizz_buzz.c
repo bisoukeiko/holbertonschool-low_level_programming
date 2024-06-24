@@ -41,7 +41,7 @@ int main(void)
 
 	}
 
-	_putchar('\n');
+	printf("\n");
 
 	return (0);
 
