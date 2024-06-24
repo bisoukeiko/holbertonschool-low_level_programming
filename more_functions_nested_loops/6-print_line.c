@@ -2,16 +2,17 @@
 
 /**
  * print_line - draw a straight line in the terminal
+ * @num: the number of times the character _ should be printed
  * Return: nothing
  */
 
-void print_line(int n)
+void print_line(int num)
 {
 	int cnt;
 
-	if (n > 0)
-	}
-		for (cnt = 0; cnt < n; cnt++)
+	if (num > 0)
+	{
+		for (cnt = 0; cnt < num; cnt++)
 		{
 
 			_putchar('_');
