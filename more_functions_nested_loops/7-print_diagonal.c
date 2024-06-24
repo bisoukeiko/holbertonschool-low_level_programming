@@ -15,34 +15,25 @@ void print_diagonal(int num)
 	{
 		for (cnt1 = 0; cnt1 < num; cnt1++)
 		{
-
 			for (cnt2 = 0; cnt2 < num; cnt2++)
 			{
-
 				if (cnt1 == cnt2)
 				{
-
 					_putchar('\\');
-
 				}
 				else
 				{
-
-					_putchar(' ');
-
+					if (cnt1 > cnt2)
+					{
+						_putchar(' ');
+					}
 				}
-
 			}
-
 			_putchar('\n');
 		}
-
 	}
 	else
 	{
-
 		_putchar('\n');
-
 	}
-
 }
