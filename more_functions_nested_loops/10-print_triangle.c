@@ -23,7 +23,7 @@ void print_triangle(int size)
 
 				if (cnt1 <= cnt2)
 				{
-					_puchar('#');
+					_putchar('#');
 					break;
 				}
 				else
