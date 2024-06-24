@@ -9,15 +9,8 @@ void print_line(int n)
 {
 	int cnt;
 
-	if (n <= 0)
-	{
-
-		continue;
-
+	if (n > 0)
 	}
-	else
-	{
-
 		for (cnt = 0; cnt < n; cnt++)
 		{
 
