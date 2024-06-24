@@ -36,4 +36,5 @@ void main(void)
 		printf(" ");
 	}
 
+	return;
 }
