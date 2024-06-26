@@ -19,7 +19,7 @@ void rev_string(char *s)
 		continue;
 	}
 
-	for (index1 = (len -1); index1 > ((len-1) / 2 ); index1--)
+	for (index1 = (len - 1); index1 > ((len - 1) / 2); index1--)
 	{
 
 		tmp = s[index2];
@@ -31,6 +31,5 @@ void rev_string(char *s)
 	}
 
 	s[len] = '\0';
-	
 
 }
