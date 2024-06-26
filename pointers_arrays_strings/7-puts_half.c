@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * puts_halh -  print the second half of a string
+ * puts_half -  print the second half of a string
  *              followed by a new line
  * @str: pointer of string
  * Return: nothing
@@ -18,14 +18,14 @@ void puts_half(char *str)
 		continue;
 	}
 
-	if ((len / 2) == 0)
+	if ((len % 2) == 0)
 	{
 
 		for (index = (len / 2 + 1); index < len; index++)
 		{
-	
+
 			_putchar(str[index]);
-	
+
 		}
 
 	}
