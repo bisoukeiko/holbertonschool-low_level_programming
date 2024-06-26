@@ -30,7 +30,7 @@ void rev_string(char *s)
 
 	}
 
-	s[len] = "\0";
+	s[len] = '\0';
 	
 
 }
