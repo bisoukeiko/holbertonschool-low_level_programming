@@ -3,7 +3,6 @@
 /**
  * puts_halh -  print the second half of a string
  *              followed by a new line
- *              
  * @str: pointer of string
  * Return: nothing
  */
@@ -35,9 +34,9 @@ void puts_half(char *str)
 
 		for (index = ((len - 1) / 2); index < len; index++)
 		{
-	
+
 			_putchar(str[index]);
-	
+
 		}
 
 	}
