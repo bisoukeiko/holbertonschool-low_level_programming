@@ -16,32 +16,26 @@ int _atoi(char *s)
 
 	for (index = 0; s[index] != '\0'; index++)
 	{
-		if (s[index] >= 0 && s[index] <= 9)
-			cnt_num++;
-	}
-
-	if (cnt_num == 0)
-	{
-		num = 0;
-	}
-	else
-	{
 
 		if (s[index] == '-')
 		{
 			cnt_sign++;
 		}
 
-		if (s[index] >= 0 && s[index] <= 9)
+		if (s[index] >= '0' && s[index] <= '9')
 		{
+			cnt_num++;
 
-			num = (num * 10) + s[index];
+			num = (num * 10) + (s[index] - '0');
 
-			if ((cnt_sign % 2) != 0)
-			{
-				num = num * -1;
-			}
+		}
+	}
 
+	if (cnt_num != 0)
+	{
+		if ((cnt_sign % 2) != 0)
+		{
+			num = num * -1;
 		}
 
 	}
