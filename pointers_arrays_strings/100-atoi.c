@@ -28,6 +28,15 @@ int _atoi(char *s)
 
 			num = (num * 10) + (s[index] - '0');
 
+			if (s[index + 1] >= '0' && s[index + 1] <= '9')
+			{
+				continue;
+			}
+			else
+			{
+				break;
+			}
+
 		}
 	}
 
