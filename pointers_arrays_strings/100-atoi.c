@@ -3,7 +3,7 @@
 /**
  * _atoi -  convert a string to an integer
  * @s: pointer of string
- * Return: integer 
+ * Return: integer
  */
 
 int _atoi(char *s)
@@ -12,11 +12,10 @@ int _atoi(char *s)
 	int index;
 	int cnt_sign = 0;
 	int cnt_num = 0;
-	int num = 0;
+	unsigned int num = 0;
 
 	for (index = 0; s[index] != '\0'; index++)
 	{
-
 		if (s[index] == '-')
 		{
 			cnt_sign++;
@@ -36,7 +35,6 @@ int _atoi(char *s)
 			{
 				break;
 			}
-
 		}
 	}
 
@@ -46,9 +44,6 @@ int _atoi(char *s)
 		{
 			num = num * -1;
 		}
-
 	}
-
 	return (num);
-
 }
