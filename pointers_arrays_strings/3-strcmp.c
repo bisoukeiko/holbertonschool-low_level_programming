@@ -2,8 +2,8 @@
 
 /**
  * _strcmp - cmpare two strings
- * @dest: string to compare
- * @src: string to compare
+ * @s2: string to compare
+ * @s1: string to compare
  * Return: value s1 - s2
  */
 
