@@ -24,10 +24,7 @@ char *_strncat(char *dest, char *src, int n)
 		dest[index_d + index_s] = src[index_s];
 	}
 
-	if (src[index_s + 1] == '\0')
-	{
-		dest[index_d + index_s + 1] = '\0';
-	}
+	dest[index_d + index_s + 1] = '\0';
 
 	return (dest);
 
