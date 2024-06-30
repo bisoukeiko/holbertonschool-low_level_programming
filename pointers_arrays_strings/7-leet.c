@@ -6,7 +6,7 @@
  * Return: pointer
  */
 
-char *leet(char str)
+char *leet(char *str)
 {
 	int index_s;
 	int index_l;
