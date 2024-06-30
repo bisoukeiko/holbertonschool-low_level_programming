@@ -2,8 +2,8 @@
 
 /**
  * string_toupper - change all lowercase letters of a string
- *                  to uppercase 
- * @str: the string which include lowercase lettre 
+ *                  to uppercase
+ * @str: the string which include lowercase lettre
  * Return: pointer
  */
 
@@ -17,7 +17,7 @@ char *string_toupper(char *str)
 		if (str[index] >= 'a' && str[index] <= 'z')
 		{
 
-			str[index] = str[index] -32;
+			str[index] = str[index] - 32;
 
 		}
 
