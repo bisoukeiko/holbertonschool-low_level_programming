@@ -19,7 +19,7 @@ char *leet(char *str)
 		{
 			if (str[index_s] == leet[index_l])
 			{
-				str[index_s] = code[index_l];
+				str[index_s] = code[index_l] + '0';
 			}
 		}
 
