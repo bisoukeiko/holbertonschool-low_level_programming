@@ -4,7 +4,7 @@
  * is_prime_number2 - Determine if a number is prime
  * @n: integer input
  * @p_num: number that iterates until n
- * Return: 1 if the input integer is a prime number 
+ * Return: 1 if the input integer is a prime number
  *         0 otherwise
  */
 
@@ -28,7 +28,7 @@ int is_prime_number2(int n, int p_num)
 /**
  * is_prime_number - Determine if a number is prime
  * @n: integer input
- * Return: 1 if the input integer is a prime number 
+ * Return: 1 if the input integer is a prime number
  *         0 otherwise
  */
 
