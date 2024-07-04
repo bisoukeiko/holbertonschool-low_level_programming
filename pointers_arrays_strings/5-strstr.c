@@ -32,10 +32,13 @@ char *_strstr(char *haystack, char *needle)
 				}
 				else
 				{
-					break;
+					index_h++;
 				}
 			}
-
+			else
+			{
+				break;
+			}
 		}
 
 	}
