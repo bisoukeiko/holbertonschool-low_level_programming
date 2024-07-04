@@ -3,7 +3,7 @@
 /**
  * _strpbrk - searche a string for any of a set of bytes
  * @s: string to be searched
- * @accept: The set of bytes to be searched for 
+ * @accept: The set of bytes to be searched for
  * Return: pointer
  */
 
