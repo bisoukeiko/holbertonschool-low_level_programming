@@ -14,10 +14,10 @@ char *_strstr(char *haystack, char *needle)
 	int index_n;
 	int index_r = 0;
 
-	for (index_h = 0; *(haystack + index_h) != '\0'; index_h++)
+	for (index_h = 0; *(haystack + index_h) >= '\0'; index_h++)
 	{
 
-		for (index_n = 0; *(needle + index_n) != '\0'; index_n++)
+		for (index_n = 0; *(needle + index_n) >= '\0'; index_n++)
 		{
 			if (*(haystack + index_h) == *(needle + index_n))
 			{
@@ -44,5 +44,4 @@ char *_strstr(char *haystack, char *needle)
 	}
 
 	return ('\0');
-
 }
