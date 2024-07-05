@@ -21,14 +21,16 @@ int main(int argc, char *argv[])
 
 	if (atoi(argv[1]) < 0)
 	{
-		printf("0");
+		coin = 0;
 	}
-
-	coin += atoi(argv[1]) / 25;
-	coin += (atoi(argv[1]) % 25) / 10;
-	coin += ((atoi(argv[1]) % 25) % 10) / 5;
-	coin += (((atoi(argv[1]) % 25) % 10) % 5) / 2;
-	coin += ((((atoi(argv[1]) % 25) % 10) % 5) % 2);
+	else
+	{	
+		coin += atoi(argv[1]) / 25;
+		coin += (atoi(argv[1]) % 25) / 10;
+		coin += ((atoi(argv[1]) % 25) % 10) / 5;
+		coin += (((atoi(argv[1]) % 25) % 10) % 5) / 2;
+		coin += ((((atoi(argv[1]) % 25) % 10) % 5) % 2);
+	}
 
 	printf("%d\n", coin);
 
