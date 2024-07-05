@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 		coin = 0;
 	}
 	else
-	{	
+	{
 		coin += atoi(argv[1]) / 25;
 		coin += (atoi(argv[1]) % 25) / 10;
 		coin += ((atoi(argv[1]) % 25) % 10) / 5;
