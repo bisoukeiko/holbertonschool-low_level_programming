@@ -4,7 +4,7 @@
 
 /**
  * print_char - Print a char
- * @arg: A list of arguments pointing to the character to be printed
+ * @ap: A list of arguments pointing to the character to be printed
  */
 void print_char(va_list ap)
 {
@@ -14,7 +14,7 @@ void print_char(va_list ap)
 
 /**
  * print_integer - Print a integer
- * @arg: A list of arguments pointing to the integer to be printed
+ * @ap: A list of arguments pointing to the integer to be printed
  */
 void print_integer(va_list ap)
 {
@@ -24,7 +24,7 @@ void print_integer(va_list ap)
 
 /**
  * print_float - Print a float
- * @arg: A list of arguments pointing to the float to be printed
+ * @ap: A list of arguments pointing to the float to be printed
  */
 void print_float(va_list ap)
 {
@@ -34,7 +34,7 @@ void print_float(va_list ap)
 
 /**
  * print_string - Print a string
- * @arg: A list of arguments pointing to the string to be printed
+ * @ap: A list of arguments pointing to the string to be printed
  */
 void print_string(va_list ap)
 {
@@ -74,10 +74,8 @@ void print_all(const char * const format, ...)
 		{'\0', NULL}
 	};
 
-	int index;
-	int index_f;
+	int index, index_f;
 	char *separator = "";
-
 
 	str = format;
 	va_start(ap, format);
@@ -99,12 +97,9 @@ void print_all(const char * const format, ...)
 
 			index_f++;
 		}
-
 		index++;
-
 	}
 
 	va_end(ap);
-
 	printf("\n");
 }
