@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * free_list - Free a dlistint_t list
+ * free_dlistint - Free a dlistint_t list
  * @head: The pointer to the head of the list_t list
  * Return: Nothing
  */
@@ -15,7 +15,7 @@ void free_dlistint(dlistint_t *head)
 
 	node = head;
 
-	while (node)
+	while (node != NULL)
 	{
 		tmp = node->next;
 
