@@ -2,10 +2,10 @@
 #include "main.h"
 
 /**
- * read_textfile - Read a text file and print it 
+ * read_textfile - Read a text file and print it
  *                 to the POSIX standard output
  * @filename: The pointer to the file that program should read
- * @letters: The number of letters that program should read and print 
+ * @letters: The number of letters that program should read and print
  * Return: The actual number of letters it could read and print
  *         0, if the file can not be opened or read, return
  *         0, if filename is NULL
