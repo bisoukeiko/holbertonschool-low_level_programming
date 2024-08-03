@@ -35,7 +35,7 @@ void func_copy(char *file_from, char *file_to)
 	if (fd_from == -1)
 		func_err("Error: Can't read from file %s\n", file_from, 98);
 
-	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC,
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_APPEND | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 	if (fd_to == -1)
 		func_err("Error: Can't write from file %s\n", file_to, 99);
