@@ -1,6 +1,9 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#include <stdlib.h>
+#include <stdio.h>
+
 /* open */
 #include <fcntl.h>
 /* read */
@@ -9,6 +12,7 @@
 /* read & write & close */
 #include <unistd.h>
 
+#define BUFSIZE 1024
 
 ssize_t read_textfile(const char *filename, size_t letters);
 
