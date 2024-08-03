@@ -46,14 +46,12 @@ void func_copy(char *file_from, char *file_to)
 		fread = read(fd_from, buffer, 1024);
 		if (fread == -1)
 			func_err("Error: Can't read from file %s\n", file_from, 98);
-		
+
 		if (fread > 0)
 		{
 			fwrite = write(fd_to, buffer, fread);
 			if (fwrite == -1 || fread != fwrite)
-			{
 				func_err("Error: Can't write to %s\n", file_to, 99);
-			}
 		}
 	}
 
