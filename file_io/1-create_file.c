@@ -10,7 +10,7 @@
 int create_file(const char *filename, char *text_content)
 {
 	int fd, fwrite;
-	int len;
+	int len = 0;
 
 	if (filename == NULL)
 	{
@@ -29,7 +29,9 @@ int create_file(const char *filename, char *text_content)
 	fwrite = write(fd, text_content, len);
 
 	if (fd == -1 || fwrite == -1)
+	{
 		return (-1);
+	}
 
 	close(fd);
 
