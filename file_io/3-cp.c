@@ -1,98 +1,105 @@
 #include "main.h"
 
 /**
- * create_buffer - Allocates 1024 bytes for a buffer.
- * @file: The name of the file buffer is storing chars for.
- *
- * Return: A pointer to the newly-allocated buffer.
+ * func_err - print error message and exit
+ * @str: error message
+ * @file: file name
+ * @code: exit code
+ * Return: void
  */
-char *create_buffer(char *file)
+void func_err(char *str, char *file, int code)
 {
-	char *buffer;
-
-	buffer = malloc(sizeof(char) * 1024);
-
-	if (buffer == NULL)
-	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't write to %s\n", file);
-		exit(99);
-	}
-
-	return (buffer);
+	dprintf(STDERR_FILENO, str, file);
+	exit(code);
 }
 
+
 /**
- * close_file - Closes file descriptors.
- * @fd: The file descriptor to be closed.
+ * func_copy - Copie the content of a file to another file
+ * @file_from: source file
+ * @file_to: destination file
+ * Return: Nothing
+ * Description:
+ *       exit code 97, if the number of argument is not the correct
+ *       exit code 98, if file_from does not exist or can not read it
+ *       exit code 99, if you can not create or if write to file_to fails
+ *       exit code 100, if you can not close a file descriptor
  */
-void close_file(int fd)
+
+void func_copy(char *file_from, char *file_to)
 {
-	int c;
+	int fd_from, fd_to, fread, fwrite, fclose;
+	char *buffer;
 
-	c = close(fd);
+	fd_from = open(file_from, O_RDONLY);
+	if (fd_from == -1)
+		func_err("Error: Can't read from file %s\n", file_from, 98);
 
-	if (c == -1)
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_APPEND | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+	if (fd_to == -1)
+		func_err("Error: Can't write from file %s\n", file_to, 99);
+
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		func_err("Error: Can't write from file %s\n", file_to, 99);
+	}
+
+	fread = 1;
+	while (fread)
+	{
+		fread = read(fd_from, buffer, 1024);
+		if (fread == -1)
+		{
+			free(buffer);
+			func_err("Error: Can't read from file %s\n", file_from, 98);
+		}
+		if (fread > 0)
+		{
+			fwrite = write(fd_to, buffer, fread);
+			if (fwrite == -1 || fread != fwrite)
+			{
+				free(buffer);
+				func_err("Error: Can't write from file %s\n", file_to, 99);
+			}
+		}
+	}
+
+	free(buffer);
+
+	fclose = close(fd_from);
+	if (fclose == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
+		exit(100);
+	}
+
+	fclose = close(fd_to);
+	if (fclose == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
 		exit(100);
 	}
 }
 
+
 /**
- * main - Copies the contents of a file to another file.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
- *
- * Return: 0 on success.
- *
- * Description: If the argument count is incorrect - exit code 97.
- *              If file_from does not exist or cannot be read - exit code 98.
- *              If file_to cannot be created or written to - exit code 99.
- *              If file_to or file_from cannot be closed - exit code 100.
+ * main - Copie the content of a file to another file
+ * @argc: the number of the arguments
+ * @argv: An array of the arguments
+ * Return: 0 on success
  */
+
 int main(int argc, char *argv[])
 {
-	int from, to, r, w;
-	char *buffer;
-
 	if (argc != 3)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(STDOUT_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
-	buffer = create_buffer(argv[2]);
-	from = open(argv[1], O_RDONLY);
-	r = read(from, buffer, 1024);
-	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-
-	do {
-		if (from == -1 || r == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't read from file %s\n", argv[1]);
-			free(buffer);
-			exit(98);
-		}
-
-		w = write(to, buffer, r);
-		if (to == -1 || w == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't write to %s\n", argv[2]);
-			free(buffer);
-			exit(99);
-		}
-
-		r = read(from, buffer, 1024);
-		to = open(argv[2], O_WRONLY | O_APPEND);
-
-	} while (r > 0);
-
-	free(buffer);
-	close_file(from);
-	close_file(to);
+	func_copy(argv[1], argv[2]);
 
 	return (0);
 }
