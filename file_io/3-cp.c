@@ -55,7 +55,7 @@ void func_copy(char *file_from, char *file_to)
 			free(buffer);
 			func_err("Error: Can't read from file %s\n", file_from, 98);
 		}
-		if (fread >= 0)
+		if (fread > 0)
 		{
 			fwrite = write(fd_to, buffer, fread);
 			if (fwrite == -1 || fread != fwrite)
