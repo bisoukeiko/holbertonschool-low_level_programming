@@ -29,7 +29,7 @@ void func_err(char *str, char *file, int code)
 void func_copy(char *file_from, char *file_to)
 {
 	int fd_from, fd_to, fread, fwrite, fclose;
-	char buffer[BUFSIZE];
+	char *buffer;
 
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
@@ -37,30 +37,36 @@ void func_copy(char *file_from, char *file_to)
 
 	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
-
 	if (fd_to == -1)
+		func_err("Error: Can't write from file %s\n", file_to, 99);
+
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
 	{
 		func_err("Error: Can't write from file %s\n", file_to, 99);
-	}
-	else
-	{
-		fchmod(fd_to, 0664);  /* 必要に応じて権限を変更*/
 	}
 
 	fread = 1;
 	while (fread)
 	{
-		fread = read(fd_from, buffer, BUFSIZE);
+		fread = read(fd_from, buffer, 1024);
 		if (fread == -1)
+		{
+			free(buffer);
 			func_err("Error: Can't read from file %s\n", file_from, 98);
-
-		if (fread > 0)
+		}
+		if (fread >= 0)
 		{
 			fwrite = write(fd_to, buffer, fread);
 			if (fwrite == -1 || fread != fwrite)
+			{
+				free(buffer);
 				func_err("Error: Can't write from file %s\n", file_to, 99);
+			}
 		}
 	}
+
+	free(buffer);
 
 	fclose = close(fd_from);
 	if (fclose == -1)
