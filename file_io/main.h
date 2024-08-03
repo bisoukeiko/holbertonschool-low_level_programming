@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/stat.h>
 
 /* open */
 #include <fcntl.h>
@@ -12,7 +13,6 @@
 /* read & write & close */
 #include <unistd.h>
 
-#define BUFSIZE 1024
 
 ssize_t read_textfile(const char *filename, size_t letters);
 
