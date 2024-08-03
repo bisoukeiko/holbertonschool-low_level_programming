@@ -39,8 +39,13 @@ void func_copy(char *file_from, char *file_to)
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 
 	if (fd_to == -1)
+	{
 		func_err("Error: Can't write from file %s\n", file_to, 99);
-
+	}
+	else
+	{
+		fchmod(fd_to, 0664);  /* 必要に応じて権限を変更*/
+	}
 
 	fread = 1;
 	while (fread)
