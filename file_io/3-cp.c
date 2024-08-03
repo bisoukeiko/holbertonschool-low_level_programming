@@ -1,6 +1,24 @@
 #include "main.h"
 
 /**
+ * func_close - Close the file descriptors
+ * @fd: The file descriptor to be closed
+ * Return: Nothing
+ */
+void func_close(int fd)
+{
+	int fclose;
+
+	fclose = close(fd);
+	if (fclose == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
+}
+
+
+/**
  * func_err - print error message and exit
  * @str: error message
  * @file: file name
@@ -28,7 +46,7 @@ void func_err(char *str, char *file, int code)
 
 void func_copy(char *file_from, char *file_to)
 {
-	int fd_from, fd_to, fread, fwrite, fclose;
+	int fd_from, fd_to, fread, fwrite;
 	char *buffer[1024];
 
 	fd_from = open(file_from, O_RDONLY);
@@ -40,34 +58,26 @@ void func_copy(char *file_from, char *file_to)
 	if (fd_to == -1)
 		func_err("Error: Can't write to %s\n", file_to, 99);
 
-	fread = 1;
-	while (fread)
+	fread = 1024;
+	while (fread == 1024)
 	{
 		fread = read(fd_from, buffer, 1024);
 		if (fread == -1)
 			func_err("Error: Can't read from file %s\n", file_from, 98);
 
-		if (fread > 0)
+		fwrite = write(fd_to, buffer, fread);
+		if (fwrite == -1 || fread != fwrite)
 		{
-			fwrite = write(fd_to, buffer, fread);
-			if (fwrite == -1 || fread != fwrite)
-				func_err("Error: Can't write to %s\n", file_to, 99);
+			func_err("Error: Can't write to %s\n", file_to, 99);
 		}
 	}
 
-	fclose = close(fd_from);
-	if (fclose == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-		exit(100);
-	}
+	if (fread == -1)
+		func_err("Error: Can't read from file %s\n", file_from, 98);
 
-	fclose = close(fd_to);
-	if (fclose == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-		exit(100);
-	}
+
+	func_close(fd_from);
+	func_close(fd_to);
 }
 
 
