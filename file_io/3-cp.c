@@ -28,57 +28,46 @@ void func_err(char *str, char *file, int code)
 
 void func_copy(char *file_from, char *file_to)
 {
-	int fd_from, fd_to, fread, fwrite, fclose;
-	char *buffer;
+	ssize_t fd_from, fd_to, fread, fwrite, fclose;
+	char *buffer[1024];
 
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
 		func_err("Error: Can't read from file %s\n", file_from, 98);
 
-	fd_to = open(file_to, O_CREAT | O_WRONLY | O_APPEND | O_TRUNC,
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 	if (fd_to == -1)
 		func_err("Error: Can't write from file %s\n", file_to, 99);
-
-	buffer = malloc(sizeof(char) * 1024);
-	if (buffer == NULL)
-	{
-		func_err("Error: Can't write from file %s\n", file_to, 99);
-	}
 
 	fread = 1;
 	while (fread)
 	{
 		fread = read(fd_from, buffer, 1024);
 		if (fread == -1)
-		{
-			free(buffer);
 			func_err("Error: Can't read from file %s\n", file_from, 98);
-		}
+		
 		if (fread > 0)
 		{
 			fwrite = write(fd_to, buffer, fread);
 			if (fwrite == -1 || fread != fwrite)
 			{
-				free(buffer);
 				func_err("Error: Can't write from file %s\n", file_to, 99);
 			}
 		}
 	}
 
-	free(buffer);
-
 	fclose = close(fd_from);
 	if (fclose == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %ld\n", fd_from);
 		exit(100);
 	}
 
 	fclose = close(fd_to);
 	if (fclose == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %ld\n", fd_to);
 		exit(100);
 	}
 }
