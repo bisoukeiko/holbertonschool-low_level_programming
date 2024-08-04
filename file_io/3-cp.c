@@ -62,7 +62,7 @@ void func_copy(char *file_from, char *file_to)
 	if (fd_to == -1)
 		func_err(99, file_to, 0);
 
-	fread = MAXSIZE
+	fread = MAXSIZE;
 	while (fread == MAXSIZE)
 	{
 		fread = read(fd_from, buffer, MAXSIZE);
