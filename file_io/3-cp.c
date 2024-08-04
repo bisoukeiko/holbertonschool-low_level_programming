@@ -61,8 +61,8 @@ void func_copy(char *file_from, char *file_to)
 		func_err(99, file_to, 0);
 
 
-	fread = 1;
-	while (fread > 0)
+	fread = 1024;
+	while (fread == 1024)
 	{
 		fread = read(fd_from, buffer, 1024);
 		if (fread == -1)
@@ -72,10 +72,6 @@ void func_copy(char *file_from, char *file_to)
 		if (fwrite == -1 || fread != fwrite)
 			func_err(99, file_to, 0);
 	}
-
-	fread = read(fd_from, buffer, 1024);
-	if (fread == -1)
-		func_err(98, file_from, 0);
 
 	fclose = close(fd_from);
 	if (fclose == -1)
