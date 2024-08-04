@@ -1,34 +1,35 @@
 #include "main.h"
 
 /**
- * func_close - Close the file descriptors
- * @fd: The file descriptor to be closed
- * Return: Nothing
- */
-void func_close(int fd)
-{
-	int fclose;
-
-	fclose = close(fd);
-	if (fclose == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-		exit(100);
-	}
-}
-
-
-/**
  * func_err - print error message and exit
- * @str: error message
- * @file: file name
  * @code: exit code
+ * @file: file name
+ * @fd: The value of file descriptor
  * Return: void
  */
-void func_err(char *str, char *file, int code)
+void func_err(int code, char *file, int fd)
 {
-	dprintf(STDERR_FILENO, str, file);
-	exit(code);
+	switch (code)
+	{
+		case 97:
+			dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+			exit(code);
+
+		case 98:
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
+			exit(code);
+
+		case 99:
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+			exit(code);
+
+		case 100:
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+			exit(code);
+
+		default:
+			return;
+	}
 }
 
 
@@ -46,38 +47,40 @@ void func_err(char *str, char *file, int code)
 
 void func_copy(char *file_from, char *file_to)
 {
-	int fd_from, fd_to, fread, fwrite;
+	int fd_from, fd_to, fread, fwrite, fclose;
 	char *buffer[1024];
 
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
-		func_err("Error: Can't read from file %s\n", file_from, 98);
+		func_err(98, file_from, 0);
 
 	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC | O_APPEND,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (fd_to == -1)
-		func_err("Error: Can't write to %s\n", file_to, 99);
 
-	fread = 1024;
-	while (fread == 1024)
+	if (fd_to == -1)
+		func_err(99, file_to, 0);
+
+
+	fread = 1;
+	while (fread > 0)
 	{
 		fread = read(fd_from, buffer, 1024);
 		if (fread == -1)
-			func_err("Error: Can't read from file %s\n", file_from, 98);
+			func_err(98, file_from, 0);
 
 		fwrite = write(fd_to, buffer, fread);
 		if (fwrite == -1 || fread != fwrite)
-		{
-			func_err("Error: Can't write to %s\n", file_to, 99);
-		}
+			func_err(99, file_to, 0);
 	}
 
-	if (fread == -1)
-		func_err("Error: Can't read from file %s\n", file_from, 98);
 
+	fclose = close(fd_from);
+	if (fclose == -1)
+		func_err(100, NULL, fd_from);
 
-	func_close(fd_from);
-	func_close(fd_to);
+	fclose = close(fd_to);
+	if (fclose == -1)
+		func_err(100, NULL, fd_to);
 }
 
 
@@ -92,8 +95,7 @@ int main(int argc, char *argv[])
 {
 	if (argc != 3)
 	{
-		dprintf(STDOUT_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
+		func_err(97, NULL, 0);
 	}
 
 	func_copy(argv[1], argv[2]);
