@@ -1,5 +1,7 @@
 #include "main.h"
 
+#define MAXSIZE 1024
+
 /**
  * func_err - print error message and exit
  * @code: exit code
