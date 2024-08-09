@@ -60,7 +60,7 @@ void func_copy(char *file_from, char *file_to)
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 
 	if (fd_to == -1)
-		func_err(98, file_to, 0);
+		func_err(99, file_to, 0);
 
 	fread = MAXSIZE;
 	while (fread == MAXSIZE)
