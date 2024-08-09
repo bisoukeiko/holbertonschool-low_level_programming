@@ -50,7 +50,7 @@ void func_err(int code, char *file, int fd)
 void func_copy(char *file_from, char *file_to)
 {
 	int fd_from, fd_to, fread, fwrite, fclose;
-	char *buffer[1024];
+	char *buffer[MAXSIZE];
 
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
@@ -62,18 +62,16 @@ void func_copy(char *file_from, char *file_to)
 	if (fd_to == -1)
 		func_err(99, file_to, 0);
 
-	fread = 1024;
-	while (fread == 1024)
+	fread = MAXSIZE;
+	while (fread == MAXSIZE)
 	{
-		fread = read(fd_from, buffer, 1024);
+		fread = read(fd_from, buffer, MAXSIZE);
 		if (fread == -1)
 			func_err(98, file_from, 0);
 
 		fwrite = write(fd_to, buffer, fread);
-		if (fwrite == -1)
+		if (fwrite == -1 || fread != fwrite)
 			func_err(99, file_to, 0);
-		if (fread != fwrite)
-			func_err(98, file_from, 0);
 	}
 
 	fclose = close(fd_from);
