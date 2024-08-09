@@ -72,6 +72,7 @@ void func_copy(char *file_from, char *file_to)
 		fwrite = write(fd_to, buffer, fread);
 		if (fwrite == -1 || fread != fwrite)
 			func_err(99, file_to, 0);
+			func_err(98, file_from, 0);
 	}
 
 	fclose = close(fd_from);
